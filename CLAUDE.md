@@ -1,138 +1,49 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+**Before It's Posted** is a Next.js 16 app that surfaces job opportunities before they go public. Users filter by field/location/status and submit new leads.
 
-## Project Overview
-
-**Before It's Posted** is a Next.js 16 app that surfaces job opportunities before they go public. Users can browse insider leads on roles, filter by field/location/status, and submit new opportunities they've heard about.
-
-## Development Commands
+## Commands
 
 ```bash
-npm run dev       # Start dev server on http://localhost:3000 (Turbopack)
-npm run build     # Create production build
-npm start         # Start production server (requires build first)
-npm run lint      # Run ESLint on all files
+npm run dev    # Dev server on http://localhost:3000 (auto-reload)
+npm run build  # Production build
+npm run lint   # ESLint check
 ```
 
-Use `npm run dev` for local development. The dev server auto-reloads on file changes.
+## Tech Stack
 
-## Architecture
+- Next.js 16 (App Router, Turbopack, TypeScript)
+- React 19 + Tailwind CSS 4
+- Custom colors in `globals.css`
 
-### Tech Stack
-
-- **Framework:** Next.js 16.3.8 (App Router, Turbopack, TypeScript)
-- **UI:** React 19 + Tailwind CSS 4
-- **Styling:** Tailwind CSS with custom color palette (see `globals.css`)
-- **Linting:** ESLint 9
-
-### Directory Structure
+## Structure
 
 ```
 src/
 ├── app/
-│   ├── layout.tsx       # Root layout (metadata, providers)
-│   ├── page.tsx         # Home page - main app entry point
-│   └── globals.css      # Global Tailwind styles + custom theme
-├── components/
-│   ├── FilterPanel.tsx   # Left sidebar: search, field/location dropdowns, status buttons
-│   ├── OpportunityCard.tsx
-│   ├── StatusTag.tsx     # Status badge component
-│   └── SubmissionForm.tsx # Modal form for adding new opportunities
+│   ├── page.tsx        # Home page (client component)
+│   └── globals.css     # Colors + Tailwind config
+├── components/         # FilterPanel, OpportunityCard, StatusTag, SubmissionForm
 └── lib/
-    ├── types.ts         # Opportunity type, status enums, label maps
-    └── mock-data.ts     # Initial opportunities dataset
+    ├── types.ts        # Opportunity type, status enums
+    └── mock-data.ts    # Initial data
 ```
 
-### Data Model
+## Data Model
 
-**Opportunity** (defined in `src/lib/types.ts`):
+**Opportunity:**
+- `id, title, company, field, location, status, insiderNote, source?, postedAt`
+- **Statuses:** `potential` → `expected_soon` → `open` → `closed`
 
-```typescript
-type Opportunity = {
-  id: string;
-  title: string;
-  company: string;
-  field: string; // e.g., "Tech", "Marketing", "Tourism"
-  location: string; // e.g., "Helsinki", "Remote (EU)"
-  status: OpportunityStatus; // "potential" | "expected_soon" | "open" | "closed"
-  insiderNote: string; // Why this is an insider lead
-  source?: string; // Where the info came from
-  postedAt: string; // ISO date the lead was shared
-};
-```
+**App state** lives in `page.tsx`: opportunities[], filters, showForm
 
-**Status types** (in order of readiness):
+## Colors
 
-- `potential` — Rumored/signals suggest hiring is coming
-- `expected_soon` — Strong signals role is being scoped, not yet open
-- `open` — Role is actively hiring (not yet public, or very new)
-- `closed` — Role has been filled or hiring paused
-
-### App Data Flow
-
-1. **Home page** (`src/app/page.tsx`, client component) holds:
-   - `opportunities[]` — all leads (initially from mock data)
-   - `filters` — user's active filters (search, field, location, statuses)
-   - `showForm` — whether the submission modal is visible
-
-2. **Dynamic filter options** are computed from opportunities:
-   - `availableFields` — unique field values
-   - `availableLocations` — unique location values
-
-3. **Filtered list** is computed in a `useMemo`:
-   - Matches search in title or company
-   - Matches selected field/location (or omitted if empty)
-   - Matches at least one selected status (or all if none selected)
-
-4. **Adding a lead**:
-   - User clicks "Share a lead" → `SubmissionForm` appears
-   - Form submits via `onSubmit` callback → new `Opportunity` is added to head of list
-   - Form closes, list re-renders
-
-### Component Boundaries
-
-- **Page** is the only client component (`"use client"`); others are regular components
-- **FilterPanel** and **OpportunityCard** receive data as props, call `onChange` callbacks
-- **SubmissionForm** wraps itself (may need refactoring for error states, validation)
-- **StatusTag** is a pure display component
-
-## Color Palette
-
-Custom Tailwind colors defined in `globals.css`:
-
-- Background: `#F6F5F2` (warm off-white)
-- Primary action: `#0F7173` (teal, `hover:#0C5B5C`)
-- Text primary: `#14171F` (dark)
-- Text secondary: `#5B6068` (gray)
-- Borders/disabled: `#E7E5E0` (light gray)
-
-When adding UI, use these color variables directly in class names (e.g., `bg-[#0F7173]`).
-
-## Tailwind CSS 4 Notes
-
-This repo uses Tailwind v4 with `@tailwindcss/postcss`. Key differences from v3:
-
-- Configuration is simpler (no `theme.extend` usually needed)
-- PostCSS setup is in `postcss.config.mjs`
-- Watch mode auto-reloads on Tailwind changes
-
-## Next.js 16 Specifics
-
-- **App Router** (all routes under `src/app/`)
-- **Turbopack** in dev for fast rebuilds
-- **TypeScript** strict mode enabled
-- **No dynamic imports** or code splitting yet (small app)
-
-See `AGENTS.md` for auto-generated Next.js guidance (regenerated by `npm run dev`).
-
-## Tips
-
-- **Adding new opportunities:** Mock data is in `src/lib/mock-data.ts`. Update or replace with real API calls when ready.
-- **Form validation:** `SubmissionForm` currently has no validation; add error handling before production.
-- **State management:** Currently all state lives in the page component. If UI grows, consider extracting filters to a custom hook or context.
-- **Styling:** Prefer Tailwind classes. If you need a reusable style, extract it to a component rather than adding CSS.
-- **Memoization:** `useMemo` in the page prevents unnecessary filter recalculations; preserve it if adding more filters.
+Use these directly in Tailwind classes (e.g., `bg-[#0F7173]`):
+- Background: `#F6F5F2`
+- Primary: `#0F7173` (teal)
+- Text: `#14171F` (dark), `#5B6068` (gray)
+- Border: `#E7E5E0`
 
 ## Project Goals & Rules
 
