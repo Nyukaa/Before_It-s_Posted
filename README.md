@@ -4,6 +4,8 @@
 
 **Before It's Posted** is a web platform that surfaces insider job opportunities before they go public. Users can discover hidden job market leads, filter opportunities by field, location, and status, and contribute new leads to help others find roles early.
 
+[Demo](https://before-it-s-posted.vercel.app/)
+
 ## Tech Stack
 
 - **Framework:** Next.js 16 (App Router, Turbopack, TypeScript)
