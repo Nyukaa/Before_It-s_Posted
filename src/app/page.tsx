@@ -76,7 +76,7 @@ export default function HomePage() {
           </button>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-[350px_1fr] gap-6">
           <div className="space-y-4">
             {showForm && (
               <SubmissionForm
@@ -86,15 +86,15 @@ export default function HomePage() {
                 availableLocations={availableLocations}
               />
             )}
-            <div className="space-y-4">
-              <FilterPanel
-                filters={filters}
-                onChange={setFilters}
-                availableFields={availableFields}
-                availableLocations={availableLocations}
-              />
-            </div>
+            <FilterPanel
+              filters={filters}
+              onChange={setFilters}
+              availableFields={availableFields}
+              availableLocations={availableLocations}
+            />
+          </div>
 
+          <div className="space-y-4">
             {filteredOpportunities.length === 0 ? (
               <div className="bg-white border border-[#E7E5E0] rounded-lg p-8 text-center text-[#8A8F98] text-sm">
                 No leads match these filters yet. Try widening your search.
