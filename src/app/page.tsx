@@ -86,7 +86,12 @@ export default function HomePage() {
 
           <div className="space-y-4">
             {showForm && (
-              <SubmissionForm onSubmit={handleNewLead} onCancel={() => setShowForm(false)} />
+              <SubmissionForm
+                onSubmit={handleNewLead}
+                onCancel={() => setShowForm(false)}
+                availableFields={availableFields}
+                availableLocations={availableLocations}
+              />
             )}
 
             {filteredOpportunities.length === 0 ? (
