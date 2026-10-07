@@ -15,17 +15,18 @@ const INITIAL_FILTERS: Filters = {
 };
 
 export default function HomePage() {
-  const [opportunities, setOpportunities] = useState<Opportunity[]>(mockOpportunities);
+  const [opportunities, setOpportunities] =
+    useState<Opportunity[]>(mockOpportunities);
   const [filters, setFilters] = useState<Filters>(INITIAL_FILTERS);
   const [showForm, setShowForm] = useState(false);
 
   const availableFields = useMemo(
     () => Array.from(new Set(opportunities.map((o) => o.field))).sort(),
-    [opportunities]
+    [opportunities],
   );
   const availableLocations = useMemo(
     () => Array.from(new Set(opportunities.map((o) => o.location))).sort(),
-    [opportunities]
+    [opportunities],
   );
 
   const filteredOpportunities = useMemo(() => {
@@ -35,7 +36,8 @@ export default function HomePage() {
         o.title.toLowerCase().includes(filters.search.toLowerCase()) ||
         o.company.toLowerCase().includes(filters.search.toLowerCase());
       const matchesField = !filters.field || o.field === filters.field;
-      const matchesLocation = !filters.location || o.location === filters.location;
+      const matchesLocation =
+        !filters.location || o.location === filters.location;
       const matchesStatus =
         filters.statuses.length === 0 || filters.statuses.includes(o.status);
 
@@ -56,8 +58,8 @@ export default function HomePage() {
           Before It&apos;s Posted
         </h1>
         <p className="text-[#5B6068] mt-3 max-w-xl mx-auto">
-          Insider leads on roles before they go public. Share what you&apos;ve heard.
-          Get early access to what&apos;s coming.
+          Insider leads on roles before they go public. Share what you&apos;ve
+          heard. Get early access to what&apos;s coming.
         </p>
       </header>
 
@@ -76,15 +78,6 @@ export default function HomePage() {
 
         <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-6">
           <div className="space-y-4">
-            <FilterPanel
-              filters={filters}
-              onChange={setFilters}
-              availableFields={availableFields}
-              availableLocations={availableLocations}
-            />
-          </div>
-
-          <div className="space-y-4">
             {showForm && (
               <SubmissionForm
                 onSubmit={handleNewLead}
@@ -93,6 +86,14 @@ export default function HomePage() {
                 availableLocations={availableLocations}
               />
             )}
+            <div className="space-y-4">
+              <FilterPanel
+                filters={filters}
+                onChange={setFilters}
+                availableFields={availableFields}
+                availableLocations={availableLocations}
+              />
+            </div>
 
             {filteredOpportunities.length === 0 ? (
               <div className="bg-white border border-[#E7E5E0] rounded-lg p-8 text-center text-[#8A8F98] text-sm">
@@ -100,7 +101,10 @@ export default function HomePage() {
               </div>
             ) : (
               filteredOpportunities.map((opportunity) => (
-                <OpportunityCard key={opportunity.id} opportunity={opportunity} />
+                <OpportunityCard
+                  key={opportunity.id}
+                  opportunity={opportunity}
+                />
               ))
             )}
           </div>

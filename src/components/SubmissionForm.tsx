@@ -1,5 +1,10 @@
 import { useState } from "react";
-import { Opportunity, OpportunityStatus, STATUS_LABELS, STATUS_ORDER } from "@/lib/types";
+import {
+  Opportunity,
+  OpportunityStatus,
+  STATUS_LABELS,
+  STATUS_ORDER,
+} from "@/lib/types";
 
 type SubmissionFormProps = {
   readonly onSubmit: (opportunity: Opportunity) => void;
@@ -76,7 +81,7 @@ export default function SubmissionForm({
           onChange={(e) => setField(e.target.value)}
           className="px-3 py-2 border border-[#E7E5E0] rounded-md text-sm bg-white focus:outline-none focus:border-[#0F7173]"
         >
-          <option value="">Select a field</option>
+          <option value="">Field</option>
           {availableFields.map((f) => (
             <option key={f} value={f}>
               {f}
@@ -89,7 +94,7 @@ export default function SubmissionForm({
           onChange={(e) => setLocation(e.target.value)}
           className="px-3 py-2 border border-[#E7E5E0] rounded-md text-sm bg-white focus:outline-none focus:border-[#0F7173]"
         >
-          <option value="">Select a location</option>
+          <option value="">Location</option>
           {availableLocations.map((loc) => (
             <option key={loc} value={loc}>
               {loc}
@@ -108,7 +113,9 @@ export default function SubmissionForm({
       />
 
       <div className="flex items-center gap-2">
-        <label htmlFor="status" className="text-sm text-[#5B6068]">Status:</label>
+        <label htmlFor="status" className="text-sm text-[#5B6068]">
+          Status:
+        </label>
         <select
           id="status"
           value={status}
