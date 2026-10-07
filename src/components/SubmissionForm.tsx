@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { Opportunity, STATUS_LABELS } from "@/lib/types";
+import { Opportunity, OpportunityStatus, STATUS_LABELS, STATUS_ORDER } from "@/lib/types";
 
 type SubmissionFormProps = {
-  onSubmit: (opportunity: Opportunity) => void;
-  onCancel: () => void;
-  availableFields: string[];
-  availableLocations: string[];
+  readonly onSubmit: (opportunity: Opportunity) => void;
+  readonly onCancel: () => void;
+  readonly availableFields: string[];
+  readonly availableLocations: string[];
 };
 
 export default function SubmissionForm({
@@ -18,9 +18,11 @@ export default function SubmissionForm({
   const [company, setCompany] = useState("");
   const [field, setField] = useState("");
   const [location, setLocation] = useState("");
+  const [status, setStatus] = useState<OpportunityStatus>("potential");
+  const [anonymousSource, setAnonymousSource] = useState("");
   const [note, setNote] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!title.trim() || !company.trim() || !note.trim()) return;
 
@@ -30,8 +32,9 @@ export default function SubmissionForm({
       company,
       field: field || "Other",
       location: location || "Unspecified",
-      status: "potential",
+      status,
       insiderNote: note,
+      source: anonymousSource || undefined,
       postedAt: new Date().toISOString().slice(0, 10),
     });
 
@@ -39,6 +42,8 @@ export default function SubmissionForm({
     setCompany("");
     setField("");
     setLocation("");
+    setStatus("potential");
+    setAnonymousSource("");
     setNote("");
   };
 
@@ -102,11 +107,29 @@ export default function SubmissionForm({
         className="w-full px-3 py-2 border border-[#E7E5E0] rounded-md text-sm resize-none focus:outline-none focus:border-[#0F7173]"
       />
 
-      <div className="flex items-center justify-between">
-        <span className="text-xs text-[#5B6068]">
-          Status: <span className="font-medium text-[#14171F]">{STATUS_LABELS.potential}</span>
-        </span>
+      <div className="flex items-center gap-2">
+        <label htmlFor="status" className="text-sm text-[#5B6068]">Status:</label>
+        <select
+          id="status"
+          value={status}
+          onChange={(e) => setStatus(e.target.value as OpportunityStatus)}
+          className="flex-1 px-3 py-2 border border-[#E7E5E0] rounded-md text-sm bg-white focus:outline-none focus:border-[#0F7173]"
+        >
+          {STATUS_ORDER.map((s) => (
+            <option key={s} value={s}>
+              {STATUS_LABELS[s]}
+            </option>
+          ))}
+        </select>
       </div>
+
+      <input
+        type="text"
+        value={anonymousSource}
+        onChange={(e) => setAnonymousSource(e.target.value)}
+        placeholder="Anonymous lead (optional)"
+        className="w-full px-3 py-2 border border-[#E7E5E0] rounded-md text-sm focus:outline-none focus:border-[#0F7173]"
+      />
 
       <div className="flex gap-2 justify-end">
         <button

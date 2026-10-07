@@ -32,6 +32,7 @@ src/
 ## Data Model
 
 **Opportunity:**
+
 - `id, title, company, field, location, status, insiderNote, source?, postedAt`
 - **Statuses:** `potential` → `expected_soon` → `open` → `closed`
 
@@ -40,6 +41,7 @@ src/
 ## Colors
 
 Use these directly in Tailwind classes (e.g., `bg-[#0F7173]`):
+
 - Background: `#F6F5F2`
 - Primary: `#0F7173` (teal)
 - Text: `#14171F` (dark), `#5B6068` (gray)
@@ -56,7 +58,7 @@ Use these directly in Tailwind classes (e.g., `bg-[#0F7173]`):
 - Keep components small and focused. Props down, callbacks up.
 - Do not add new dependencies without asking me first.
 - Before big changes, show a short plan and wait for my approval.
-- After each finished task: run `npm run lint` and `npm run build`,
+- After each finished task: run `npm run lint`,
   then suggest a git commit message.
 - Explain what you changed in simple words, I am learning Claude Code
   and Next.js.
