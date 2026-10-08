@@ -66,7 +66,7 @@ export default function SubmissionForm({
           onChange={(e) => setTitle(e.target.value)}
           placeholder="Job title"
           required
-          className="px-3 py-2 border border-[#E7E5E0] rounded-md text-sm focus:outline-none focus:border-[#0F7173]"
+          className="px-3 py-2 border-2 border-[#D0CCC8] rounded-md text-sm text-[#14171F] placeholder-[#8A8F98] bg-white focus:outline-none focus:border-[#0F7173] focus:border-2"
         />
         <input
           type="text"
@@ -74,12 +74,12 @@ export default function SubmissionForm({
           onChange={(e) => setCompany(e.target.value)}
           placeholder="Company"
           required
-          className="px-3 py-2 border border-[#E7E5E0] rounded-md text-sm focus:outline-none focus:border-[#0F7173]"
+          className="px-3 py-2 border-2 border-[#D0CCC8] rounded-md text-sm text-[#14171F] placeholder-[#8A8F98] bg-white focus:outline-none focus:border-[#0F7173] focus:border-2"
         />
         <select
           value={field}
           onChange={(e) => setField(e.target.value)}
-          className="px-3 py-2 border border-[#E7E5E0] rounded-md text-sm bg-white focus:outline-none focus:border-[#0F7173]"
+          className="px-3 py-2 border-2 border-[#D0CCC8] rounded-md text-sm text-[#14171F] bg-white appearance-none focus:outline-none focus:border-[#0F7173] focus:border-2 cursor-pointer"
         >
           <option value="">Field</option>
           {availableFields.map((f) => (
@@ -92,7 +92,7 @@ export default function SubmissionForm({
         <select
           value={location}
           onChange={(e) => setLocation(e.target.value)}
-          className="px-3 py-2 border border-[#E7E5E0] rounded-md text-sm bg-white focus:outline-none focus:border-[#0F7173]"
+          className="px-3 py-2 border-2 border-[#D0CCC8] rounded-md text-sm text-[#14171F] bg-white appearance-none focus:outline-none focus:border-[#0F7173] focus:border-2 cursor-pointer"
         >
           <option value="">Location</option>
           {availableLocations.map((loc) => (
@@ -109,18 +109,18 @@ export default function SubmissionForm({
         placeholder="Why do you think this position will open up soon? What's the source?"
         required
         rows={3}
-        className="w-full px-3 py-2 border border-[#E7E5E0] rounded-md text-sm resize-none focus:outline-none focus:border-[#0F7173]"
+        className="w-full px-3 py-2 border-2 border-[#D0CCC8] rounded-md text-sm text-[#14171F] placeholder-[#8A8F98] bg-white resize-none focus:outline-none focus:border-[#0F7173] focus:border-2"
       />
 
       <div className="flex items-center gap-2">
-        <label htmlFor="status" className="text-sm text-[#5B6068]">
+        <label htmlFor="status" className="text-sm text-[#5B6068] whitespace-nowrap">
           Status:
         </label>
         <select
           id="status"
           value={status}
           onChange={(e) => setStatus(e.target.value as OpportunityStatus)}
-          className="flex-1 px-3 py-2 border border-[#E7E5E0] rounded-md text-sm bg-white focus:outline-none focus:border-[#0F7173]"
+          className="flex-1 px-3 py-2 border-2 border-[#D0CCC8] rounded-md text-sm text-[#14171F] bg-white appearance-none focus:outline-none focus:border-[#0F7173] focus:border-2 cursor-pointer"
         >
           {STATUS_ORDER.map((s) => (
             <option key={s} value={s}>
@@ -135,7 +135,7 @@ export default function SubmissionForm({
         value={anonymousSource}
         onChange={(e) => setAnonymousSource(e.target.value)}
         placeholder="Anonymous lead (optional)"
-        className="w-full px-3 py-2 border border-[#E7E5E0] rounded-md text-sm focus:outline-none focus:border-[#0F7173]"
+        className="w-full px-3 py-2 border-2 border-[#D0CCC8] rounded-md text-sm text-[#14171F] placeholder-[#8A8F98] bg-white focus:outline-none focus:border-[#0F7173] focus:border-2"
       />
 
       <div className="flex gap-2 justify-end">
