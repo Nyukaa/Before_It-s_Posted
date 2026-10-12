@@ -1,6 +1,18 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { Lato, Work_Sans } from "next/font/google";
+
+const lato = Lato({
+  subsets: ["latin"],
+  weight: ["700"],
+  variable: "--font-lato",
+});
+const workSans = Work_Sans({
+  subsets: ["latin"],
+  weight: ["500", "600"],
+  variable: "--font-work-sans",
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,7 +36,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       {/* Browser extensions (e.g. ColorZilla) inject attributes into <body> before React hydrates */}
-      <body className="min-h-full flex flex-col" suppressHydrationWarning>
+      <body className={`${lato.variable} ${workSans.variable} min-h-full flex flex-col`} suppressHydrationWarning>
         {children}
       </body>
     </html>

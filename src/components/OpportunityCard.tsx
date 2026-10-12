@@ -2,17 +2,24 @@ import { Opportunity, OpportunityStatus } from "@/lib/types";
 import StatusTag from "./StatusTag";
 
 const BORDER_COLORS: Record<OpportunityStatus, string> = {
-  potential: "border-l-[#5B6068]",
+  potential: "border-l-espoo-peach",
   expected_soon: "border-l-[#C9922B]",
-  open: "border-l-[#0F7173]",
-  closed: "border-l-[#8B4A3C]",
+  open: "border-l-espoo-blue",
+  closed: "border-l-espoo-navy",
 };
 
-export default function OpportunityCard({ opportunity }: { opportunity: Opportunity }) {
-  const formattedDate = new Date(opportunity.postedAt).toLocaleDateString("en-GB", {
-    day: "numeric",
-    month: "short",
-  });
+export default function OpportunityCard({
+  opportunity,
+}: {
+  opportunity: Opportunity;
+}) {
+  const formattedDate = new Date(opportunity.postedAt).toLocaleDateString(
+    "en-GB",
+    {
+      day: "numeric",
+      month: "short",
+    },
+  );
 
   return (
     <article

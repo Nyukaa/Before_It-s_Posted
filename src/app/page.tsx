@@ -70,7 +70,7 @@ export default function HomePage() {
           </h2>
           <button
             onClick={() => setShowForm((prev) => !prev)}
-            className="px-4 py-2 bg-[#0F7173] text-white text-sm font-medium rounded-md hover:bg-[#0C5B5C] transition-colors"
+            className="px-4 py-2 bg-espoo-navy text-white text-base font-button font-bold rounded-lg hover:bg-espoo-blue transition-colors duration-150"
           >
             {showForm ? "Close" : "Share a lead"}
           </button>
