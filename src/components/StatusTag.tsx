@@ -1,10 +1,10 @@
 import { OpportunityStatus, STATUS_LABELS } from "@/lib/types";
 
 const STATUS_STYLES: Record<OpportunityStatus, { text: string; bg: string; dot: string }> = {
-  potential: { text: "text-[#5B6068]", bg: "bg-[#5B6068]/10", dot: "bg-[#5B6068]" },
+  potential: { text: "text-espoo-peach", bg: "bg-espoo-peach/10", dot: "bg-espoo-peach" },
   expected_soon: { text: "text-[#A3761F]", bg: "bg-[#A3761F]/10", dot: "bg-[#C9922B]" },
-  open: { text: "text-[#0F7173]", bg: "bg-[#0F7173]/10", dot: "bg-[#0F7173]" },
-  closed: { text: "text-[#8B4A3C]", bg: "bg-[#8B4A3C]/10", dot: "bg-[#8B4A3C]" },
+  open: { text: "text-espoo-blue", bg: "bg-espoo-blue/10", dot: "bg-espoo-blue" },
+  closed: { text: "text-espoo-navy", bg: "bg-espoo-navy/10", dot: "bg-espoo-navy" },
 };
 
 export default function StatusTag({ status }: { status: OpportunityStatus }) {

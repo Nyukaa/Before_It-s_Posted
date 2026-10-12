@@ -55,7 +55,7 @@ export default function SubmissionForm({
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-white border border-[#E7E5E0] rounded-lg p-5 space-y-3"
+      className="bg-espoo-pink border border-[#E7E5E0] rounded-lg p-5 space-y-3"
     >
       <h3 className="font-serif text-lg text-[#14171F]">Share a lead</h3>
 
@@ -113,7 +113,10 @@ export default function SubmissionForm({
       />
 
       <div className="flex items-center gap-2">
-        <label htmlFor="status" className="text-sm text-[#5B6068] whitespace-nowrap">
+        <label
+          htmlFor="status"
+          className="text-sm text-[#5B6068] whitespace-nowrap"
+        >
           Status:
         </label>
         <select
@@ -148,7 +151,7 @@ export default function SubmissionForm({
         </button>
         <button
           type="submit"
-          className="px-4 py-2 bg-[#14171F] text-white text-sm font-medium rounded-md hover:bg-[#2B2E36] transition-colors"
+          className="px-4 py-2 bg-espoo-navy text-white text-sm font-medium rounded-md hover:bg-[#2B2E36] transition-colors"
         >
           Submit lead
         </button>

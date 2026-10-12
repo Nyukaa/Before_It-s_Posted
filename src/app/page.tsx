@@ -54,7 +54,7 @@ export default function HomePage() {
     <div className="min-h-screen bg-[#F6F5F2]">
       <header className="max-w-5xl mx-auto px-6 pt-16 pb-10 text-center">
         <p className="text-sm text-[#8A8F98] mb-2">The hidden job market</p>
-        <h1 className="font-serif text-4xl sm:text-5xl text-[#14171F]">
+        <h1 className="font-serif text-4xl sm:text-5xl text-espoo-navy">
           Before It&apos;s Posted
         </h1>
         <p className="text-[#5B6068] mt-3 max-w-xl mx-auto">
