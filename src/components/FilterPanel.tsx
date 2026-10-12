@@ -37,14 +37,14 @@ export default function FilterPanel({
         value={filters.search}
         onChange={(e) => onChange({ ...filters, search: e.target.value })}
         placeholder="Search by title or company"
-        className="w-full px-3 py-2 border border-[#E7E5E0] rounded-md text-sm focus:outline-none focus:border-[#0F7173]"
+        className="w-full px-3 py-2 border border-[#E7E5E0] rounded-md text-sm focus:outline-none focus:border-espoo-blue"
       />
 
       <div className="grid grid-cols-2 gap-3">
         <select
           value={filters.field}
           onChange={(e) => onChange({ ...filters, field: e.target.value })}
-          className="px-3 py-2 border border-[#E7E5E0] rounded-md text-sm bg-white focus:outline-none focus:border-[#0F7173]"
+          className="px-3 py-2 border border-[#E7E5E0] rounded-md text-sm bg-white focus:outline-none focus:border-espoo-blue"
         >
           <option value="">All fields</option>
           {availableFields.map((field) => (
@@ -57,7 +57,7 @@ export default function FilterPanel({
         <select
           value={filters.location}
           onChange={(e) => onChange({ ...filters, location: e.target.value })}
-          className="px-3 py-2 border border-[#E7E5E0] rounded-md text-sm bg-white focus:outline-none focus:border-[#0F7173]"
+          className="px-3 py-2 border border-[#E7E5E0] rounded-md text-sm bg-white focus:outline-none focus:border-espoo-blue"
         >
           <option value="">All locations</option>
           {availableLocations.map((location) => (
